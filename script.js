@@ -86,46 +86,24 @@
   handle.addEventListener("submit", enter);
   
 alert("Hello")
+
+  let tempElement = document.querySelector("#temp");
+  tempElement.innerHTML = defaultTemp;
   
-  // function showCity(response) {
-  //   document.querySelector("#city").innerHTML = response.data.name;
-  //   document.querySelector("#temp").innerHTML = Math.round(
-  //     response.data.main.temp
-    // );
-    // event.preventDefault();
-    // let cityElement = document.querySelector("#city");
-    // let searchInput = document.querySelector("#search-input");
-    // cityElement.innerHTML = searchInput.value;
-  // }
-  // let searchForm = document.querySelector("#search-form");
-  // searchForm.addEventListener("submit", search);
+  function convert2F(event) {
+    event.preventDefault();
+    tempElement.innerHTML = Math.round(defaultTemp * 1.8 + 32);
+  }
   
-  // function search(event) {
-  //   event.preventDefault();
-  //   let apiKey = "281450ec88936f4fa8ee9864682b49a0";
-  //   let city = document.querySelector("#search-input").value;
-  //   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  //   axios.get(apiUrl).then(showCity);
-  // }
+  function convert2C(event) {
+    event.preventDefault();
+    tempElement.innerHTML = defaultTemp;
+  }
   
-  // //const defaultTemp = 19;
-  // let tempElement = document.querySelector("#temp");
-  // tempElement.innerHTML = defaultTemp;
+  let fahrLink = document.querySelector("#fLink");
+  fahrLink.addEventListener("click", convert2F);
   
-  // function convert2F(event) {
-  //   event.preventDefault();
-  //   tempElement.innerHTML = Math.round(defaultTemp * 1.8 + 32);
-  // }
-  
-  // function convert2C(event) {
-  //   event.preventDefault();
-  //   tempElement.innerHTML = defaultTemp;
-  // }
-  
-  // let fahrLink = document.querySelector("#fLink");
-  // fahrLink.addEventListener("click", convert2F);
-  
-  // let celsLink = document.querySelector("#cLink");
-  // celsLink.addEventListener("click", convert2C);
+  let celsLink = document.querySelector("#cLink");
+  celsLink.addEventListener("click", convert2C);
 
   
