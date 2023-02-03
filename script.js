@@ -83,8 +83,8 @@ function displayForecast(){
     <div class="weather-forecast-date">Thurs</div>
     <i class="fa-solid fa-cloud"></i>
     <div class="weather-forecast-temperatures">
-      <span class="weather-forecast-temp-max">62°</span>
-      <span class="weather-forecast-temp-min">60°</span>
+      <span class="weather-forecast-temp-max">50°</span>
+      <span class="weather-forecast-temp-min">40°</span>
  </div>
   </div>
 </div>`
