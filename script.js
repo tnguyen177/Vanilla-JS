@@ -75,6 +75,21 @@
     searchCity(city);
   }
   
+function displayForecast(){
+  let forcastElement = document.querySelector("forecast");
+  forecastElement.innerHTML = `
+  <div class="row">
+  <div class="col-2">
+    <div class="weather-forecast-date">Thurs</div>
+    <i class="fa-solid fa-cloud"></i>
+    <div class="weather-forecast-temperatures">
+      <span class="weather-forecast-temp-max">62°</span>
+      <span class="weather-forecast-temp-min">60°</span>
+ </div>
+  </div>
+</div>`
+}
+
   function searchCity(city) {
     let apiKey = "281450ec88936f4fa8ee9864682b49a0";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -87,23 +102,25 @@
   
 alert("Hello")
 
-  let tempElement = document.querySelector("#temp");
-  tempElement.innerHTML = defaultTemp;
+displayForecast();
+
+  // let tempElement = document.querySelector("#temp");
+  // tempElement.innerHTML = defaultTemp;
   
-  function convert2F(event) {
-    event.preventDefault();
-    tempElement.innerHTML = Math.round(defaultTemp * 1.8 + 32);
-  }
+  // function convert2F(event) {
+  //   event.preventDefault();
+  //   tempElement.innerHTML = Math.round(defaultTemp * 1.8 + 32);
+  // }
   
-  function convert2C(event) {
-    event.preventDefault();
-    tempElement.innerHTML = defaultTemp;
-  }
+  // function convert2C(event) {
+  //   event.preventDefault();
+  //   tempElement.innerHTML = defaultTemp;
+  // }
   
-  let fahrLink = document.querySelector("#fLink");
-  fahrLink.addEventListener("click", convert2F);
+  // let fahrLink = document.querySelector("#fLink");
+  // fahrLink.addEventListener("click", convert2F);
   
-  let celsLink = document.querySelector("#cLink");
-  celsLink.addEventListener("click", convert2C);
+  // let celsLink = document.querySelector("#cLink");
+  // celsLink.addEventListener("click", convert2C);
 
   
