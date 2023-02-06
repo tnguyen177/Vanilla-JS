@@ -11,8 +11,12 @@ form {
   h2 {
     text-align: center;
   }
-  .cloud {
+  .col-2 {
     text-align: center;
-    font-size: 40px;
+    padding-top: 20px;
+    border-style: solid;
+    border-radius: 10%;
+    padding-bottom: 20px;
+    border-color: lightgray;
   }
   
