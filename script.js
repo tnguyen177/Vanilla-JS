@@ -62,11 +62,20 @@
   
   formatDate();
   
+function getForecast(coordinates) {
+  let apiKey = "215576bab28022db35e6e64f040e1b56";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayForecast);}
+
+
+
   function showWeather(response) {
+    getForecast(response.data.coord);
     document.querySelector("#city").innerHTML = response.data.name;
     document.querySelector("#temp").innerHTML = Math.round(
       response.data.main.temp
     );
+    
   }
   
   function enter(event) {
@@ -75,23 +84,43 @@
     searchCity(city);
   }
   
-function displayForecast(){
-  let forcastElement = document.querySelector("forecast");
-  forecastElement.innerHTML = `
-  <div class="row">
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  return days[day];//this is an index
+}
+
+
+function displayForecast(response) { 
+  let forecast = response?.data?.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  forecast?.forEach(function (forecastDay, index) {
+    if (index < 6) {
+    forecastHTML = forecastHTML + `
   <div class="col-2">
-    <div class="weather-forecast-date">Thurs</div>
-    <i class="fa-solid fa-cloud"></i>
+    <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+    <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
+          alt=""
+        />
     <div class="weather-forecast-temperatures">
-      <span class="weather-forecast-temp-max">50°</span>
-      <span class="weather-forecast-temp-min">40°</span>
+      <span class="weather-forecast-temp-max">${Math.round(forecastDay.temp.max)}°</span> | 
+      <span class="weather-forecast-temp-min">${Math.round(forecastDay.temp.min)}°</span>
  </div>
-  </div>
-</div>`
+  </div>`;}
+});
+
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+
 }
 
   function searchCity(city) {
-    let apiKey = "281450ec88936f4fa8ee9864682b49a0";
+    let apiKey = "215576bab28022db35e6e64f040e1b56";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   
     axios.get(apiUrl).then(showWeather);
@@ -100,9 +129,10 @@ function displayForecast(){
   let handle = document.querySelector("#search-form");
   handle.addEventListener("submit", enter);
   
-alert("Hello")
+// alert("Hello");
 
 displayForecast();
+searchCity ("Lake Forest");
 
   // let tempElement = document.querySelector("#temp");
   // tempElement.innerHTML = defaultTemp;
